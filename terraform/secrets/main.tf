@@ -39,7 +39,7 @@ provider "vault" {}
 
 # This allows to mount the vault to
 # our cluster
-resource "vault-mount" "in-cluster" {
+resource "vault_mount" "in-cluster" {
   path = "in-cluster"
     type = "kv" # Key-Value store
     options = {
