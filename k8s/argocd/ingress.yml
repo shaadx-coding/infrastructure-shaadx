@@ -1,0 +1,35 @@
+---
+
+# Let's set up our ingress for argocd
+# that will also use cert-manager for certificate management
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd # Here we use it for argocd
+  annotations:
+    cert-manager.io/cluster-issuer: default-issuer # Use the default one
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true" # Allow ssl validation via x509 with terminating the first SSL connection when load balancing
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" # Here we specify that we want kubernetes to communicate to the backend service via HTTPS
+
+spec:
+  ingressClassName: public
+  rules:
+    # What is done here is simply that we need to redirect every
+    # connection to argocd.shaadx.com/ to the service argocd-server wich host the 
+    # argocd http server. Also we want the connection to be with https
+    - host: argocd.shaadx.com
+      http:
+        paths:
+          - path: / 
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  name: https
+
+  # Here we specify the tls secret from the cert-manager corresponding to our host
+  tls:
+    - hosts:
+      - argocd.shaadx.com
+      secretName: argocd-tls

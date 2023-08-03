@@ -9,3 +9,4 @@ resources:
   - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.7.10
   - namespace.yml
   - apps.yml
+  - ingress.yml
