@@ -1,0 +1,29 @@
+---
+
+# This configuration file looks very similar to the
+# one in k8s/argocd because it's a loop to have an app
+# that handle all the other
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: argocd
+
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: in-cluster
+    namespace: argocd
+  project: default
+  source:
+    repoURL: https://github.com/shaadx-coding/infrastructure-shaadx.git
+    targetRevision: k8s # Will be changed when merged
+    path: k8s/argocd
