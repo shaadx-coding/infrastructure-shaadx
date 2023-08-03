@@ -22,7 +22,7 @@ spec:
   source:
     repoURL: https://charts.jetstack.io
     chart: cert-manager
-    targetRevision: 1.12.13
+    targetRevision: 1.11.2
     helm:
       parameters:
         - name: installCRDs # Here we create a Custom Resource Definition
