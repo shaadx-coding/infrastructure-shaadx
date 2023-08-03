@@ -1,0 +1,36 @@
+---
+
+# Let's config our cert manager because we love
+# https
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  labels:
+    app: cert-manager
+
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: in-cluster
+    namespace: cert-manager
+  project: default
+  source:
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: 1.12.13
+    helm:
+      parameters:
+        - name: installCRDs # Here we create a Custom Resource Definition
+          value: "true"
+      values: |
+        fullnameOverride: cert-manager
+        podDnsPolicy: "None"
+        podDnsConfig:
+          nameservers:
+            - "1.1.1.1"
+            - "1.0.0.1"
