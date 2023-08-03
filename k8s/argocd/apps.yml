@@ -1,0 +1,30 @@
+---
+
+# This is the apps of apps that will point to the kustomization
+# in the k8s/apps directory
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps
+  namespace: argocd
+  # Setting up a finalizer if i want a cascade delete
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: apps
+
+# Let's set up the spec
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true # Will create the namespace defined in destination if not already present
+    automated:
+      prune: true
+  destination:
+    name: in-cluster # Single node cluster here so we deploy on the default node
+    namespace: argocd
+  project: default
+  source:
+    repoURL: https://github.com/shaadx-coding/infrastructure-shaadx.git
+    targetRevision: k8s # Usually HEAD but here i'm still working on the k8s branch
+    path: k8s/apps
