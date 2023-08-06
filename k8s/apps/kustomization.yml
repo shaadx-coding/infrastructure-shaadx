@@ -9,3 +9,4 @@ resources:
   - argocd.yml
   - ingress-nginx.yml
   - cert-manager.yml
+  - default-issuer.yml
