@@ -21,3 +21,8 @@ spec:
                 name: ouestlinfra
                 port:
                   name: http
+
+  tls:
+    - hosts:
+      - ouestlinfra.fr
+      secretName: ouestlinfra-tls
