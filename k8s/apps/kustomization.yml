@@ -10,3 +10,4 @@ resources:
   - ingress-nginx.yml
   - cert-manager.yml
   - default-issuer.yml
+  - ouestlinfra.yml

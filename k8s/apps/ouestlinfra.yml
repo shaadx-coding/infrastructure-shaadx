@@ -1,0 +1,27 @@
+---
+
+# This is the argocd app that will allow
+# us to deploy the Ou est L'infra .fr site
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ouestlinfra
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: ouestlinfra
+
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: in-cluster
+    namespace: ouestlinfra
+  project: default
+  source:
+    repoURL: https://github.com/shaadx-coding/infrastructure-shaadx.git
+    targetRevision: k8s
+    path: k8s/manifests/ouestlinfra
