@@ -11,3 +11,4 @@ resources:
   - cert-manager.yml
   - default-issuer.yml
   - ouestlinfra.yml
+  - uptime-kuma.yml
