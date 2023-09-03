@@ -20,3 +20,7 @@ spec:
                 name: uptime-kuma-service
                 port:
                   number: 3001
+  tls:
+    - hosts:
+      - uptime.shaadx.com
+      secretName: uptime-kuma-tls
