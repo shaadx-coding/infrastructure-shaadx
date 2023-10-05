@@ -13,7 +13,7 @@ resource "kubernetes_secret" "tls" {
   
   type = "kubernetes.io/tls"
   
-  metadata = {
+  metadata {
     name = "tls-server"
     namespace = kubernetes_namespace.vault.0.metadata.0.name
   }
@@ -149,6 +149,7 @@ resource "kubernetes_ingress_v1" "ingress_vault_ui" {
       "cert-manager.io/cluster-issuer"                = "default-issuer"
       "nginx.ingress.kubernetes.io/backend-protocol"  = "HTTPS"
     }
+  }
   spec {
     ingress_class_name = "public"
 
@@ -175,6 +176,5 @@ resource "kubernetes_ingress_v1" "ingress_vault_ui" {
         }
       }
     }
-  }
   }
 }
