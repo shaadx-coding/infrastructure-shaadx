@@ -3,7 +3,7 @@
 resource "kubernetes_namespace" "vault" {
   count = 1
 
-  metadata = {
+  metadata {
     name = "vault"  
   }
 }
