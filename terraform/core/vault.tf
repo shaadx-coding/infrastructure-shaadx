@@ -92,7 +92,7 @@ resource "helm_release" "vault" {
 
           config = <<EOF
           ui = true
-          api_addr = "${locals.vault_addr}"
+          api_addr = "${local.vault_addr}"
 
           listener "tcp" {
             address         = "[::]:8200"
@@ -153,12 +153,12 @@ resource "kubernetes_ingress_v1" "ingress_vault_ui" {
     ingress_class_name = "public"
 
     tls {
-      hosts       = [locals.vault_addr]
+      hosts       = [local.vault_addr]
       secret_name = "vault-tls"
     }
 
     rule {
-      host = locals.vault_addr
+      host = local.vault_addr
 
       http {
         path {

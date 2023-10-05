@@ -51,7 +51,7 @@ resource "tls_cert_request" "vault_cert_request" {
   private_key_pem = tls_private_key.vault_private_key.0.private_key_pem
   
   dns_names = [
-    locals.vault_addr,
+    local.vault_addr,
     "vault.vault.svc",
     "vault.vault",
   ]
