@@ -65,7 +65,7 @@ resource "tls_cert_request" "vault_cert_request" {
 resource "tls_locally_signed_cert" "vault_signed_certificate" {
   count = 1
   
-  cert_request_pem = tls_cert_request.vault_private_key.0.cert_request_pem
+  cert_request_pem = tls_cert_request.vault_cert_request.0.cert_request_pem
   ca_private_key_pem = tls_private_key.ca.0.private_key_pem
   ca_cert_pem = tls_self_signed_cert.ca.0.cert_pem
 
