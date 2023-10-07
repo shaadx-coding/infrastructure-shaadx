@@ -12,4 +12,4 @@ resources:
   - default-issuer.yml
   - ouestlinfra.yml
   - uptime-kuma.yml
-  - vault-secrets.operator.yml
+  - vault-secrets-operator.yml
