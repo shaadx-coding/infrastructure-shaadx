@@ -1,0 +1,7 @@
+token: {{ MASTER_TOKEN }}
+{% if is_other_master == 1 %}
+server: https://{{ SERVER_FAILOVER_IP }}:9345
+{% endif %}
+tls-san:
+  - "{{ SERVER_FAILOVER_IP }}"
+
