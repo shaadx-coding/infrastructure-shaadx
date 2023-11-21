@@ -1,6 +1,7 @@
 ---
 
 - name: Download kube-vip RBAC file
+  become: true
   get_url:
     url: https://kube-vip.io/manifests/rbac.yaml
     dest: "{{ WATCHDIR }}/kube-vip-rbac.yaml"
@@ -9,6 +10,7 @@
     mode: 0644
 
 - name: Deploying kube-vip
+  become: true
   shell: |
     ctr --namespace k8s.io image pull "{{ KUBE_VIP_IMAGE }}":"{{ KUBE_VIP_IMAGE_TAG }}"
     ctr --namespace k8s.io run --rm --net-host "{{ KUBE_VIP_IMAGE }}":"{{ KUBE_VIP_IMAGE_TAG }}" vip /kube-vip \
