@@ -1,0 +1,26 @@
+---
+
+- name: Create the needed directories if they don't already exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    recurse: yes
+  loop:
+    - "{{ CONFDIR }}"
+    - "{{ WATCHDIR }}"
+
+- name: Copy the config file to it's destination
+  template:
+    src: ../templates/config.yml.j2
+    dest: {{ CONFFILE }}
+  notify:
+    - restart rke2
+
+- name: Installing rke2 server
+  shell: |
+    curl -sfL https://get.rke2.io | sh -
+  notify:
+    - start rke2
