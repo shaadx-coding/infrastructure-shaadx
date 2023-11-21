@@ -1,6 +1,7 @@
 ---
 
 - name: Create the needed directories if they don't already exists
+  become: true
   file:
     path: "{{ item }}"
     state: directory
@@ -13,6 +14,7 @@
     - "{{ WATCHDIR }}"
 
 - name: Copy the config file to it's destination
+  become: true
   template:
     src: ../templates/config.yml.j2
     dest: {{ CONFFILE }}
@@ -20,6 +22,7 @@
     - restart rke2
 
 - name: Installing rke2 server
+  become: true
   shell: |
     curl -sfL https://get.rke2.io | sh -
   notify:
