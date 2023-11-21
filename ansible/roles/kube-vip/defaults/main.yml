@@ -7,3 +7,4 @@ CONTAINER_RUNTIME_ENDPOINT:
 CONTAINERD_ADDRESS: "/run/k3s/containerd/containerd.sock"
 KUBE_VIP_IMAGE: "docker.io/plndr/kube-vip"
 KUBE_VIP_IMAGE_TAG: "latest"
+WATCHDIR: "/var/lib/rancher/rke2/server/manifests"
