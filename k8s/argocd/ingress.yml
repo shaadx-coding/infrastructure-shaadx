@@ -12,7 +12,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" # Here we specify that we want kubernetes to communicate to the backend service via HTTPS
 
 spec:
-  ingressClassName: public
+  ingressClassName: nginx
   rules:
     # What is done here is simply that we need to redirect every
     # connection to argocd.shaadx.com/ to the service argocd-server wich host the 
