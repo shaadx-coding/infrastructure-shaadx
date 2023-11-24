@@ -13,3 +13,5 @@ spec:
       port: 80
   selector:
     app: ouestlinfra
+  service:
+    type: LoadBalancer
