@@ -8,7 +8,7 @@ metadata:
     cert-manager.io/cluster-issuer: default-issuer
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
-  ingressClassName: public
+  ingressClassName: nginx
   rules:
     - host: uptime.shaadx.com
       http:
