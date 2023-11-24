@@ -7,9 +7,10 @@ namespace: argocd
 # in manifests
 resources:
   - argocd.yml
-    # - ingress-nginx.yml
   - cert-manager.yml
   - default-issuer.yml
   - ouestlinfra.yml
   - uptime-kuma.yml
   - vault-secrets-operator.yml
+
+# - ingress-nginx.yml
