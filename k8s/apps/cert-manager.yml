@@ -32,5 +32,4 @@ spec:
         podDnsPolicy: "None"
         podDnsConfig:
           nameservers:
-            - "1.1.1.1"
-            - "1.0.0.1"
+            - "10.12.0.1"
