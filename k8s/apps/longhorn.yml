@@ -34,3 +34,5 @@ spec:
         fullnameOverride: longhorn
         persistence:
           reclaimPolicy: Retain
+        helmPreUpgradeCheckerJob:
+          enabled: false
