@@ -1,0 +1,25 @@
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: younes-gay
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: younes-gay
+
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: in-cluster
+    namespace: younes-gay
+  project: default
+  source:
+    repoURL: https://github.com/shaadx-coding/infrastructure-shaadx.git
+    targetRevision: k8s
+    path: k8s/manifests/younes-gay

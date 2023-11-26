@@ -13,3 +13,4 @@ resources:
   - ouestlinfra.yml
   - uptime-kuma.yml
   - vault-secrets-operator.yml
+  - younes-gay.yml
