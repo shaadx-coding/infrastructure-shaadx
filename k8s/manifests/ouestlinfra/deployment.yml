@@ -10,11 +10,11 @@ metadata:
     app: ouestlinfra
 
 spec:
-  replicas: 2 # Here we create 2 replicas for our static webserver
+  replicas: 2   # Here we create 2 replicas for our static webserver
   selector:
     matchLabels:
       app: ouestlinfra
-  template: # Let's define the template for the default conf 
+  template:    # Let's define the template for the default conf
     metadata:
       labels:
         app: ouestlinfra
@@ -25,6 +25,12 @@ spec:
           volumeMounts:
             - name: nginx-html
               mountPath: /usr/share/nginx/html/
+          resources:     # Apply golden resource rules
+            requests:
+              cpu: 400m
+              memory: 1Gi
+            limits:
+              memory: 1Gi
       volumes:
         - name: nginx-html
           configMap:
