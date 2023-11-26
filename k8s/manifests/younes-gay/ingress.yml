@@ -22,7 +22,7 @@ spec:
                 port:
                   name: http
 
-tls:
-  - hosts:
-    - younes.gay
-    secretName: younes-gay-tls
+  tls:
+    - hosts:
+        - younes.gay
+      secretName: younes-gay-tls
