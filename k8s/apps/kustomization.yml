@@ -13,4 +13,3 @@ resources:
   - ouestlinfra.yml
   - uptime-kuma.yml
   - vault-secrets-operator.yml
-  - longhorn.yml
