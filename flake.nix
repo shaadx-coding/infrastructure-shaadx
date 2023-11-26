@@ -65,7 +65,6 @@
             tools.ansible-lint
             tools.nixpkgs-fmt
             tools.markdownlint-cli
-            tools.yamllint
           ];
         };
       }
