@@ -3,7 +3,8 @@
 kind: Kustomization
 namespace: argocd
 
-# Let's declare here all our argocd apps file that will then fetch the corresponding
+# Let's declare here all our argocd apps
+# file that will then fetch the corresponding
 # in manifests
 resources:
   - argocd.yml
@@ -12,5 +13,4 @@ resources:
   - ouestlinfra.yml
   - uptime-kuma.yml
   - vault-secrets-operator.yml
-
-# - ingress-nginx.yml
+  - longhorn.yml

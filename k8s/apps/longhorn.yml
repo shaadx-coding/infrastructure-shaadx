@@ -1,0 +1,33 @@
+---
+
+# This is longhorn, a distributed block storage system
+# it will be used to create the PV from the PVC on the
+# different nodes
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: longhorn
+
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: in-cluster
+    namespace: longhorn-system
+  project: default
+  source:
+    repoURL: https://charts.longhorn.io
+    chart: longhorn
+    targetRevision: 1.5.3
+    helm:
+      values: |
+        fullnameOverride: longhorn
+        persistence:
+          reclaimPolicy: Retain
