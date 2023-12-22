@@ -14,3 +14,4 @@ resources:
   - uptime-kuma.yml
   - vault-secrets-operator.yml
   - younes-gay.yml
+  - vault.yml
