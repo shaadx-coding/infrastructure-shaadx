@@ -51,9 +51,9 @@ spec:
                     tls_key_file = "/vault/userconfig/tls/tls.key"
                   }
 
-                storage "file" {
-                  path = "/vault/data"
-                }
+                  storage "file" {
+                    path = "/vault/data"
+                  }
               volumes:
                 - name: tls
                   secret:
