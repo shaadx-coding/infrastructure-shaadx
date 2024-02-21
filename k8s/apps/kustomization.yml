@@ -1,0 +1,17 @@
+---
+
+kind: Kustomization
+namespace: argocd
+
+# Let's declare here all our argocd apps
+# file that will then fetch the corresponding
+# in manifests
+resources:
+  - argocd.yml
+  - cert-manager.yml
+  - default-issuer.yml
+  - ouestlinfra.yml
+  - uptime-kuma.yml
+  - vault-secrets-operator.yml
+  - younes-gay.yml
+  - vault.yml

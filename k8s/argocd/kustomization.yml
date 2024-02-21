@@ -1,0 +1,12 @@
+---
+
+kind: Kustomization
+# In order to have the namespace I need to declare it
+# and import it in the resources list
+namespace: argocd
+
+resources:
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.9.2
+  - namespace.yml
+  - apps.yml
+  - ingress.yml

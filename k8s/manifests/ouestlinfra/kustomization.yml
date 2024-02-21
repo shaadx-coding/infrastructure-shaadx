@@ -1,0 +1,25 @@
+---
+
+# Let's define here the needed
+# resources and our configmap generator
+kind: Kustomization
+namespace: ouestlinfra
+
+# Adding here our label
+commonLabels:
+  app: ouestlinfra
+
+# Let's define our resources
+resources:
+  - namespace.yml
+  - deployment.yml
+  - service.yml
+  - ingress.yml
+
+# Here we define our Configmap
+configMapGenerator:
+  - name: nginx-html
+    files: # Let's load our html files
+    - html/index.html
+    - html/style.css
+    - html/script.js

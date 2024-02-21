@@ -1,0 +1,15 @@
+---
+
+kind: Kustomization
+namespace: uptime-kuma
+
+# Adding our label here
+commonLabels:
+  app: uptime-kuma
+
+# Let's define our needed ressources
+resources:
+  - namespace.yml
+  - service.yml
+  - ingress.yml
+  - statefulset.yml

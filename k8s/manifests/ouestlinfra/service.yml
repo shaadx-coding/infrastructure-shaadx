@@ -1,0 +1,15 @@
+---
+
+# Let's declare our basic service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ouestlinfra
+  namespace: ouestlinfra
+
+spec:
+  ports:
+    - name: http
+      port: 80
+  selector:
+    app: ouestlinfra

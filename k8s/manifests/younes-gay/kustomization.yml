@@ -1,0 +1,19 @@
+---
+
+kind: Kustomization
+namespace: younes-gay
+
+commonLabels:
+  app: younes-gay
+
+resources:
+  - namespace.yml
+  - deployment.yml
+  - service.yml
+  - ingress.yml
+
+# Define the configmap
+configMapGenerator:
+  - name: nginx-html
+    files:
+      - html/index.html

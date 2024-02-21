@@ -1,0 +1,35 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: younes-gay
+  labels:
+    app: younes-gay
+
+spec:
+  replicas: 2     # Because i love you yoyo
+  selector:
+    matchLabels:
+      app: younes-gay
+  template:
+    metadata:
+      labels:
+        app: younes-gay
+    spec:
+      containers:
+        - name: younes-gay
+          image: nginx
+          volumeMounts:
+            - name: nginx-html
+              mountPath: /usr/share/nginx/html/
+          resources:
+            requests:
+              cpu: 400m
+              memory: 1Gi
+            limits:
+              memory: 1Gi
+      volumes:
+        - name: nginx-html
+          configMap:
+            name: nginx-html

@@ -1,0 +1,27 @@
+---
+
+# This is the argocd app file
+# that will allow us to deploy our uptime-kuma
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: uptime-kuma
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: uptime-kuma
+
+spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: in-cluster
+    namespace: uptime-kuma
+  project: default
+  source:
+    repoURL: https://github.com/shaadx-coding/infrastructure-shaadx.git
+    targetRevision: k8s
+    path: k8s/manifests/uptime-kuma
