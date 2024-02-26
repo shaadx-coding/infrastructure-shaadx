@@ -2,9 +2,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: local-path-provisioner
+  name: local-path-storage
   labels:
-    app: local-path-provisioner
+    app: local-path-storage
 
 spec:
   syncPolicy:
@@ -14,7 +14,7 @@ spec:
       prune: true
   destination:
     name: in-cluster
-    namespace: local-path-provisioner
+    namespace: local-path-storage
   project: default
   source:
     repoURL: https://github.com/shaadx-coding/infrastructure-shaadx.git
