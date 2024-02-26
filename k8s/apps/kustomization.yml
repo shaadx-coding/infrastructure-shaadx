@@ -15,3 +15,4 @@ resources:
   - vault-secrets-operator.yml
   - younes-gay.yml
   - vault.yml
+  - local-path-provisioner.yml
