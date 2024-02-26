@@ -1,0 +1,7 @@
+---
+kind: Kustomization
+namespace: local-path-provisioner
+
+resources:
+  - github.com/rancher/local-path-provisioner/deploy?ref=v0.0.26
+  - namespace.yml
