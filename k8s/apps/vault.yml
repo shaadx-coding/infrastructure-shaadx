@@ -1,81 +1,71 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: vault
   labels:
     app: vault
 
 spec:
-  generators:
-    - list:
-        elements:
-          - name: in-cluster
-  template:
-    metadata:
-      name: "{{name}}-vault"
-      labels:
-        app: vault
-    spec:
-      syncPolicy:
-        syncOptions:
-          - CreateNamespace=true
-        automated:
-          prune: true
-      destination:
-        name: "{{name}}"
-        namespace: vault
-      project: default
-      source:
-        repoURL: https://helm.releases.hashicorp.com
-        chart: vault
-        targetRevision: 0.27.0
-        helm:
-          values: |
-            fullnameOverride: vault
-            global:
-              enable: true
-              tlsDisable: false
-            injector:
-              enabled: false
-            server:
-              standalone:
-                enabled: true
-                config: |
-                  ui = true
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+  destination:
+    name: "{{name}}"
+    namespace: vault
+  project: default
+  source:
+    repoURL: https://helm.releases.hashicorp.com
+    chart: vault
+    targetRevision: 0.27.0
+    helm:
+      values: |
+        fullnameOverride: vault
+        global:
+          enable: true
+          tlsDisable: false
+        injector:
+          enabled: false
+        server:
+          standalone:
+            enabled: true
+            config: |
+              ui = true
 
-                  listener "tcp" {
-                    address = "[::]:8200"
-                    cluster_address = "[::]:8201"
-                    tls_cert_file = "/vault/userconfig/tls/tls.crt"
-                    tls_key_file = "/vault/userconfig/tls/tls.key"
-                  }
-                  storage "file" {
-                    path = "/vault/data"
-                  }
-              volumes:
-                - name: tls
-                  secret:
-                    secretName: vault-tls
-              volumeMounts:
-                - mountPath: /vault/userconfig/tls
-                  name: tls
-                  readOnly: true
-              dataStorage:
-                enabled: true
-                size: 10Gi
-              shareProcessNamespace: true
-              service:
-                type: NodePort
-                nodeport: 30820
-              ingress:
-                enabled: true
-                annotations:
-                  nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-                  cert-manager.io/cluster-issuer: default-issuer
-                hosts:
-                  - host: vault.shaadx.com
-                tls:
-                  - hosts:
-                      - vault.shaadx.com
-                    secretName: vault-tls
+              listener "tcp" {
+                address = "[::]:8200"
+                cluster_address = "[::]:8201"
+                tls_cert_file = "/vault/userconfig/tls/tls.crt"
+                tls_key_file = "/vault/userconfig/tls/tls.key"
+              }
+              storage "file" {
+                path = "/vault/data"
+              }
+          volumes:
+            - name: tls
+              secret:
+                secretName: vault-tls
+          volumeMounts:
+            - mountPath: /vault/userconfig/tls
+              name: tls
+              readOnly: true
+          dataStorage:
+            enabled: true
+            size: 10Gi
+          shareProcessNamespace: true
+          service:
+            type: NodePort
+            nodeport: 30820
+          ingress:
+            enabled: true
+            annotations:
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+              cert-manager.io/cluster-issuer: default-issuer
+            hosts:
+              - host: vault.shaadx.com
+            tls:
+              - hosts:
+                  - vault.shaadx.com
+                secretName: vault-tls
