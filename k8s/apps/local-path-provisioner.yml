@@ -1,3 +1,4 @@
+# yamllint disable rule:line-length
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -17,6 +18,10 @@ spec:
     namespace: local-path-storage
   project: default
   source:
-    repoURL: https://github.com/shaadx-coding/infrastructure-shaadx.git
-    targetRevision: k8s
-    path: k8s/manifests/local-path-provisioner
+    repoURL: https://charts.rancher.io
+    chart: local-path-provisioner
+    targetRevision: v0.0.26
+    helm:
+      values: |
+        storageClass.defaultClass: true
+        nodePathMap: [{node DEFAULT_PATH_FOR_NON_LISTED_NODES, paths: [/opt/node-storage]}]
